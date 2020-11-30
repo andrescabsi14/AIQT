@@ -7,7 +7,9 @@ interface HomePageProps {}
 export const HomePage: React.FC<HomePageProps> = () => {
   return (
     <section className={styles.wrapper}>
-      <EmailComposerAddress />
+      <div className={styles.form}>
+        <EmailComposerAddress />
+      </div>
     </section>
   );
 };

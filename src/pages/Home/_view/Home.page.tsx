@@ -1,5 +1,5 @@
 import React from "react";
-import { EmailComposerAddress } from "../shared/EmailComposerAddress";
+import { EmailComposerAddress } from "../../../shared/EmailComposerAddress";
 import styles from "./Home.module.scss";
 
 interface HomePageProps {}

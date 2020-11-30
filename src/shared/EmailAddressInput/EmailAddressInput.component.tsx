@@ -34,6 +34,7 @@ const EmailAddressInput: React.FC<EmailAddressInputProps> = ({
         type="text"
         ref={inputRef}
         value={candidate}
+        placeholder={`Enter recipients...`}
         onChange={(e: any) => onChange(e.target.value)}
         onBlur={(e: any) => onBlur(e.target.value)}
       />

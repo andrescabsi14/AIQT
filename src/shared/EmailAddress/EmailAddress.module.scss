@@ -9,6 +9,7 @@ li {
   transition: all 0.3s ease;
   overflow: hidden;
   color: #292727;
+  margin: 3.5px 0;
 
   &:hover {
     padding: 5px 25px 5px 5px;
@@ -46,7 +47,7 @@ li {
 
 .separator {
   line-height: 27px;
-  margin: 0 5px;
+  margin: 0 5px 0 0px;
 }
 
 .valid {

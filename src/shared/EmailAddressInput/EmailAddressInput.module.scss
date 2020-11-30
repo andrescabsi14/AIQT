@@ -3,7 +3,7 @@
   align-items: center;
   margin-top: 1px;
   flex: 1;
-  margin-left: 10px;
+  margin: 5px 0px;
 
   input {
     padding: 5px;
@@ -14,5 +14,19 @@
     width: 100%;
     border-radius: 0;
     outline: none;
+
+    &::-webkit-input-placeholder {
+      /* Edge */
+      color: #c6c6c6;
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #c6c6c6;
+    }
+
+    &::placeholder {
+      color: #c6c6c6;
+    }
   }
 }

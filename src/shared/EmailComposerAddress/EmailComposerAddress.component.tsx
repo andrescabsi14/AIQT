@@ -8,6 +8,7 @@ interface EmailComposerAddressProps {
 }
 
 export interface SelectedEmail {
+  id: string;
   valid: boolean;
   value: string;
 }
@@ -21,12 +22,19 @@ const EmailComposerAddress: React.FC<EmailComposerAddressProps> = ({
 }) => {
   const [_emailCandidate, _setEmailCandidate] = useState<string>("");
   const [_emails, _setEmails] = useState<SelectedEmail[]>([
-    { value: "theresa@outlook.com", valid: true },
+    {
+      id: `${new Date().getTime()}`,
+      value: "theresa@outlook.com",
+      valid: true,
+    },
   ]);
 
   const addEmail = (value: string) => {
-    const valid = emailOptions.includes(value);
+    const valid =
+      emailOptions.includes(value) &&
+      _emails.find((email) => email.value === value) === undefined;
     const newAddress = {
+      id: `${new Date().getTime()} `,
       valid,
       value,
     };
@@ -46,17 +54,19 @@ const EmailComposerAddress: React.FC<EmailComposerAddressProps> = ({
       <ul className={styles.addresses}>
         {_emails.map((email, index) => (
           <EmailAddress
-            key={email.value}
+            key={email.id}
             email={email}
             removeEmail={removeEmail}
             last={_emails?.length === index + 1}
           />
         ))}
-        <EmailAddressInput
-          addEmail={addEmail}
-          setCandidate={_setEmailCandidate}
-          candidate={_emailCandidate}
-        />
+        <div className={styles.inputAutocomplete}>
+          <EmailAddressInput
+            addEmail={addEmail}
+            setCandidate={_setEmailCandidate}
+            candidate={_emailCandidate}
+          />
+        </div>
       </ul>
     </div>
   );

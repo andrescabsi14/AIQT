@@ -1,38 +1,63 @@
-import React from "react";
+import React, { useState } from "react";
+import { EmailAddress } from "../EmailAddress";
+import { EmailAddressInput } from "../EmailAddressInput";
 import styles from "./EmailComposerAddress.module.scss";
 
-interface EmailComposerAddressProps {}
-
-enum EmailAddressStatus {
-  VALID = "valid",
-  INVALID = "invalid",
+interface EmailComposerAddressProps {
+  emailOptions: string[];
 }
 
-const valid = true;
+export interface SelectedEmail {
+  valid: boolean;
+  value: string;
+}
+// enum EmailAddressStatus {
+//   VALID = "valid",
+//   INVALID = "invalid",
+// }
 
-const EmailComposerAddress: React.FC<EmailComposerAddressProps> = () => {
-  console.log(EmailAddressStatus);
+const EmailComposerAddress: React.FC<EmailComposerAddressProps> = ({
+  emailOptions,
+}) => {
+  const [_emailCandidate, _setEmailCandidate] = useState<string>("");
+  const [_emails, _setEmails] = useState<SelectedEmail[]>([
+    { value: "theresa@outlook.com", valid: true },
+  ]);
+
+  const addEmail = (value: string) => {
+    const valid = emailOptions.includes(value);
+    const newAddress = {
+      valid,
+      value,
+    };
+    _setEmailCandidate("");
+    _setEmails([..._emails, newAddress]);
+  };
+
+  const removeEmail = (value: string) => {
+    const updatedselectedEmails = _emails.filter(
+      (email) => email.value !== value
+    );
+    _setEmails([...updatedselectedEmails]);
+  };
+
   return (
     <div className={styles.wrapper}>
       <ul className={styles.addresses}>
-        <li>
-          {/* EmailAddressStatus.VALID */}
-          <div
-            className={`${styles.value} ${
-              valid ? styles.valid : styles.invalid
-            }`}
-          >
-            theresa@outlook.com
-          </div>
-
-          <div className={styles.actions}>
-            <div className={styles.remove}>✕</div>
-          </div>
-        </li>
+        {_emails.map((email, index) => (
+          <EmailAddress
+            key={email.value}
+            email={email}
+            removeEmail={removeEmail}
+            last={_emails?.length === index + 1}
+          />
+        ))}
+        <EmailAddressInput
+          addEmail={addEmail}
+          setCandidate={_setEmailCandidate}
+          candidate={_emailCandidate}
+        />
       </ul>
-      <div className={styles.inputWrapper}>
-        <input type="text" value={`Testr`} />
-      </div>
     </div>
   );
 };

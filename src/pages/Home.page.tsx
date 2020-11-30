@@ -8,7 +8,7 @@ export const HomePage: React.FC<HomePageProps> = () => {
   return (
     <section className={styles.wrapper}>
       <div className={styles.form}>
-        <EmailComposerAddress />
+        <EmailComposerAddress emailOptions={["andres@test.com"]} />
       </div>
     </section>
   );

@@ -1,0 +1,76 @@
+@import "../../theme/theme.scss";
+
+li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  color: #292727;
+
+  &:hover {
+    padding: 5px 25px 5px 5px;
+    background: #ededed;
+    color: #353333;
+
+    .actions {
+      opacity: 1;
+      right: 4px;
+    }
+    .invalidIcon {
+      opacity: 0;
+      right: -100%;
+    }
+  }
+
+  .value {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .actions {
+    top: 4px;
+    font-size: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+    font-weight: bold;
+    color: #323131;
+    position: absolute;
+    right: -100%;
+
+    cursor: pointer;
+    opacity: 0;
+  }
+}
+
+.separator {
+  line-height: 27px;
+  margin: 0 5px;
+}
+
+.valid {
+  font-weight: bold;
+}
+
+.invalid {
+  font-weight: bold;
+  background: #f3b7bd;
+  padding: 5px 25px 5px 5px;
+}
+
+.invalidIcon {
+  position: absolute;
+  padding: 2px;
+  color: #ffc5c9;
+  top: 8px;
+  right: 6px;
+  font-size: 10px;
+  border-radius: 50%;
+  background: #f1515f;
+  width: 10px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

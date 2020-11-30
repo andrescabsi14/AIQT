@@ -1,4 +1,5 @@
 import React from "react";
+import { EmailComposerAddress } from "../shared/EmailComposerAddress";
 import styles from "./Home.module.scss";
 
 interface HomePageProps {}
@@ -6,7 +7,7 @@ interface HomePageProps {}
 export const HomePage: React.FC<HomePageProps> = () => {
   return (
     <section className={styles.wrapper}>
-      <div>This is Home</div>
+      <EmailComposerAddress />
     </section>
   );
 };

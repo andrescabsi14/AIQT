@@ -1,3 +1,17 @@
+# IMPROVEMENTS
+
+1. Include a component sandbox like Storybook
+2. Include Jest testings
+3. I was planning to use RxJS to implement the autocomplete. Something like this: https://codesandbox.io/s/vxx3r8ox0?file=/src/index.js:381-390
+4. Remove all the color codes from the component and centralize all the colors through the theme definition in scss.
+5. Implement performance optimization like useMemo, memo, useCallback.
+6. implement fetching to the API using axios, using request cancel feature, and even integrating this api middleware to redux, only if the project is big enough to do it.
+7. Test other browsers (I check Chrome only)
+8. Responsive features.
+9. Improve type definition.
+10. Implement redux or any other state management tool
+11. Implement an error logging/tracking tool like Sentry.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import { EmailAddress } from "../EmailAddress";
 import { EmailAddressInput } from "../EmailAddressInput";
+import { Autocomplete } from "../Autocomplete";
 import styles from "./EmailComposerAddress.module.scss";
 
 interface EmailComposerAddressProps {
@@ -20,14 +21,10 @@ export interface SelectedEmail {
 const EmailComposerAddress: React.FC<EmailComposerAddressProps> = ({
   emailOptions,
 }) => {
+  const containerReference = useRef<any>(null);
+  const [_containerPosition, _setContainerPosition] = useState<string>("");
   const [_emailCandidate, _setEmailCandidate] = useState<string>("");
-  const [_emails, _setEmails] = useState<SelectedEmail[]>([
-    {
-      id: `${new Date().getTime()}`,
-      value: "theresa@outlook.com",
-      valid: true,
-    },
-  ]);
+  const [_emails, _setEmails] = useState<SelectedEmail[]>([]);
 
   const addEmail = (value: string) => {
     const valid =
@@ -49,8 +46,19 @@ const EmailComposerAddress: React.FC<EmailComposerAddressProps> = ({
     _setEmails([...updatedselectedEmails]);
   };
 
+  useLayoutEffect(() => {
+    function updatePosition() {
+      _setContainerPosition(
+        containerReference.current?.getBoundingClientRect()
+      );
+    }
+    window.addEventListener("scroll", updatePosition);
+    updatePosition();
+    return () => window.removeEventListener("scroll", updatePosition);
+  }, []);
+
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} ref={containerReference}>
       <ul className={styles.addresses}>
         {_emails.map((email, index) => (
           <EmailAddress
@@ -66,6 +74,14 @@ const EmailComposerAddress: React.FC<EmailComposerAddressProps> = ({
             setCandidate={_setEmailCandidate}
             candidate={_emailCandidate}
           />
+
+          {/* {_emailCandidate && _emailCandidate.length > 3 && ( */}
+          <Autocomplete
+            options={emailOptions}
+            query={_emailCandidate}
+            positionRef={_containerPosition}
+          />
+          {/* )} */}
         </div>
       </ul>
     </div>

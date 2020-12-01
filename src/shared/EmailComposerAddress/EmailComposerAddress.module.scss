@@ -1,0 +1,26 @@
+@import "../../theme/theme.scss";
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  background: $app-autocomplete-bg;
+  border-radius: 7px;
+  overflow: hidden;
+  box-shadow: 3px 19px 30px 10px rgba(50, 50, 50, 0.15);
+  border: solid 1px $app-input-border;
+  padding: 14px 15px;
+
+  ul.addresses {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .inputAutocomplete {
+    position: relative;
+    flex: 1;
+    margin-left: 10px;
+  }
+}

@@ -1,0 +1,32 @@
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  margin-top: 1px;
+  flex: 1;
+  margin: 5px 0px;
+
+  input {
+    padding: 5px;
+    box-sizing: border-box;
+    color: #393737;
+    border: 0;
+    font-size: 0.9rem;
+    width: 100%;
+    border-radius: 0;
+    outline: none;
+
+    &::-webkit-input-placeholder {
+      /* Edge */
+      color: #c6c6c6;
+    }
+
+    &:-ms-input-placeholder {
+      /* Internet Explorer 10-11 */
+      color: #c6c6c6;
+    }
+
+    &::placeholder {
+      color: #c6c6c6;
+    }
+  }
+}
